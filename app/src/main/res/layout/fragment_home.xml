@@ -26,14 +26,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText"
                 android:hint="Search for games"
-                android:actionViewClass="android.widget.SearchView"/>
+                android:actionViewClass="android.widget.TextView"
+                android:inputType="text"
+                android:focusable="true" />
 
             <ImageButton
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:id="@+id/imageButton"
                 android:background="@drawable/search"
-                />
+                android:layout_marginLeft="20dp"
+                android:clickable="true" />
         </LinearLayout>
 
         <ListView
