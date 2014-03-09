@@ -1,8 +1,7 @@
 package unl.edu.cse.app;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +10,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.entity.BufferedHttpEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.InputStream;
-import java.net.URL;
+import java.io.IOException;
 import java.util.List;
 
 import Data.Game;
@@ -28,10 +19,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<Game> _listDataHeader;
+    private Activity activity;
 
-    public ExpandableListAdapter(Context context, List<Game> listDataHeader) {
+    public ExpandableListAdapter(Context context, List<Game> listDataHeader, Activity activity) {
         this._context = context;
         this._listDataHeader = listDataHeader;
+        this.activity = activity;
     }
 
     @Override
@@ -59,32 +52,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.description);
 
-        txtListChild.setText(game.getDescription());
+        txtListChild.setText(game.getDeck());
 
         ImageView img = (ImageView) convertView.findViewById(R.id.gameImage);
 
         try {
-            URL url = new URL(game.getImageUrl());
-            //try this url = "http://0.tqn.com/d/webclipart/1/0/5/l/4/floral-icon-5.jpg"
-            HttpGet httpRequest = null;
-
-            httpRequest = new HttpGet(url.toURI());
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpResponse response = (HttpResponse) httpclient
-                    .execute(httpRequest);
-
-            HttpEntity entity = response.getEntity();
-            BufferedHttpEntity b_entity = new BufferedHttpEntity(entity);
-            InputStream input = b_entity.getContent();
-
-            Bitmap bitmap = BitmapFactory.decodeStream(input);
-
-            img.setImageBitmap(bitmap);
-
-        } catch (Exception ex) {
-
+            game.loadImage(img, this.activity);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
 
         return convertView;
     }
@@ -128,26 +105,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         ImageView img = (ImageView) convertView.findViewById(R.id.smallImage);
 
         try {
-            URL url = new URL(game.getImageUrl());
-            //try this url = "http://0.tqn.com/d/webclipart/1/0/5/l/4/floral-icon-5.jpg"
-            HttpGet httpRequest = null;
-
-            httpRequest = new HttpGet(url.toURI());
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpResponse response = (HttpResponse) httpclient
-                    .execute(httpRequest);
-
-            HttpEntity entity = response.getEntity();
-            BufferedHttpEntity b_entity = new BufferedHttpEntity(entity);
-            InputStream input = b_entity.getContent();
-
-            Bitmap bitmap = BitmapFactory.decodeStream(input);
-
-            img.setImageBitmap(bitmap);
-
-        } catch (Exception ex) {
-
+            game.loadImage(img, this.activity);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         return convertView;
