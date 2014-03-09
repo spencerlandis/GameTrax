@@ -1,21 +1,14 @@
 package unl.edu.cse.app;
 
-<<<<<<< HEAD
 import android.app.Activity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ExpandableListView;
-=======
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
->>>>>>> origin/master
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,24 +29,13 @@ public abstract class Search {
     public static void setView(View view) {
         Search.view = view;
     }
-=======
-
-public abstract class Search {
-
-    private static View view = null;
->>>>>>> origin/master
 
     public static ArrayList search() {
         Log.i("query?", String.valueOf(((TextView) view.findViewById(R.id.editText)).getText()));
         return null;
     }
 
-<<<<<<< HEAD
     public static void initiateSearch() {
-=======
-    public static void initiateSearch(View view) {
-        Search.view = view;
->>>>>>> origin/master
         TextView tv = (TextView) view.findViewById(R.id.editText);
         tv.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -69,7 +51,6 @@ public abstract class Search {
                 Search.search();
             }
         });
-<<<<<<< HEAD
 
         expListView = (ExpandableListView) view.findViewById(R.id.listView);
 
@@ -106,8 +87,4 @@ public abstract class Search {
         listDataChild.put(listDataHeader.get(1), nowShowing);
         listDataChild.put(listDataHeader.get(2), comingSoon);
     }
-
-=======
-    }
->>>>>>> origin/master
 }
