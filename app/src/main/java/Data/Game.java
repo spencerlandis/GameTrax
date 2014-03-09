@@ -4,26 +4,26 @@ package Data;
  * Created by spencerlandis on 3/8/14.
  */
 public class Game {
-    private long gameID;
+    private long id;
     private String name;
-    private String description;
+    private String deck;
     private String imageUrl;
-    private String gbUrl;
+    private String site_detail_url;
 
-    public Game(long gameID, String name, String description, String imageUrl, String gbUrl) {
-        this.gameID = gameID;
+    public Game(long gameID, String name, String deck, String imageUrl, String site_detail_url) {
+        this.id = gameID;
         this.name = name;
-        this.description = description;
+        this.deck = deck;
         this.imageUrl = imageUrl;
-        this.gbUrl = gbUrl;
+        this.site_detail_url = site_detail_url;
     }
 
-    public long getGameID() {
-        return gameID;
+    public long getId() {
+        return id;
     }
 
-    public void setGameID(long gameID) {
-        this.gameID = gameID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -35,11 +35,11 @@ public class Game {
     }
 
     public String getDescription() {
-        return description;
+        return deck;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.deck = description;
     }
 
     public String getImageUrl() {
@@ -51,11 +51,11 @@ public class Game {
     }
 
     public String getGbUrl() {
-        return gbUrl;
+        return site_detail_url;
     }
 
     public void setGbUrl(String gbUrl) {
-        this.gbUrl = gbUrl;
+        this.site_detail_url = gbUrl;
     }
 
 }

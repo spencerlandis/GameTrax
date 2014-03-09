@@ -9,15 +9,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
+import Data.Game;
 
 public abstract class Search {
 
     private static ExpandableListAdapter listAdapter;
     private static ExpandableListView expListView;
-    private static List<String> listDataHeader;
-    private static HashMap<String, List<String>> listDataChild;
+    private static List<Game> listDataHeader;
 
     private static View view = null;
     private static Activity activity = null;
@@ -57,7 +57,7 @@ public abstract class Search {
         // preparing list data
         prepareListData();
 
-        listAdapter = new ExpandableListAdapter(activity, listDataHeader, listDataChild);
+        listAdapter = new ExpandableListAdapter(activity, listDataHeader);
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
@@ -65,26 +65,9 @@ public abstract class Search {
     }
 
     private static void prepareListData() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
+        listDataHeader = new ArrayList<Game>();
 
         // Adding child data
-        listDataHeader.add("Halo 3");
-        listDataHeader.add("Game 2");
-        listDataHeader.add("Game 3");
-
-        // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The conclusion to the original Halo trilogy has the super-soldier Master Chief joining forces with The Arbiter to finish off the threat of both the remaining Covenant Empire and the parasitic Flood, once and for all.");
-
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("The Conjuring");
-
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
+        listDataHeader.add(new Game(9993L, "Halo 3", "he conclusion to the original Halo trilogy has the super-soldier Master Chief joining forces with The Arbiter to finish off the threat of both the remaining Covenant Empire and the parasitic Flood, once and for all.", "http://static.giantbomb.com/uploads/square_avatar/8/87790/2079826-box_halo3.png", "http://www.giantbomb.com/halo-3/3030-9993/"));
     }
 }
