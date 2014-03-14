@@ -68,8 +68,12 @@ public class Game {
         this.image = image;
     }
 
-    public void loadImage(final ImageView img, final Activity activity) throws IOException {
-
+    public void loadImage(final ImageView img, final Activity activity) throws IOException
+    {
+        if(this.getImage() == null)
+        {
+            return;
+        }
         new Thread(new Runnable() {
             public void run() {
 
@@ -78,28 +82,33 @@ public class Game {
                 HttpURLConnection connection = null;
                 try {
                     connection = (HttpURLConnection) new URL(image.getIcon_url()).openConnection();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+                   //image doeson't exist!;
                 }
                 try {
                     connection.connect();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+
                 }
                 InputStream input = null;
                 try {
-                    input = connection.getInputStream();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    input = connection.getInputStream();x = BitmapFactory.decodeStream(input);
+
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            img.setImageBitmap(x);
+                        }
+                    });
+                } catch (Exception e) {
+                }
+                connection.disconnect();
+                try {
+                    input.close();
+                } catch (Exception e) {
+                    //
                 }
 
-                x = BitmapFactory.decodeStream(input);
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        img.setImageBitmap(x);
-                    }
-                });
             }
         }).start();
     }

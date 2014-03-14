@@ -41,7 +41,7 @@ public abstract class Search {
     public static void search() {
         new Thread(new Runnable() {
             public void run() {
-                String query = "http://www.giantbomb.com/api/search/?api_key=7f4feae8d9cc9bc262d824cf64ce654fc4ed3b92&query=\"" + String.valueOf(((TextView) view.findViewById(R.id.editText)).getText()) + "\"&format=json&resources=game&field_list=name,deck,site_detail_url,id,image";
+                String query = "http://www.giantbomb.com/api/search/?api_key=7f4feae8d9cc9bc262d824cf64ce654fc4ed3b92&query=\"" + String.valueOf(((TextView) view.findViewById(R.id.editText)).getText()) + "\"&format=json&resources=game&limit=20&field_list=name,deck,site_detail_url,id,image";
                 query = query.replaceAll(" ", "%20");
                 try {
                     URL url = new URL(query);
@@ -65,13 +65,13 @@ public abstract class Search {
         JsonObject response = (JsonObject) parser.parse(inputLine);
 
         if (response.get("error").getAsString().compareTo("OK") == 0) {
-            Log.d("query?", response.get("results").toString());
             JsonElement g = response.get("results");
             Gson gson = new Gson();
             games = new ArrayList<Game>();
-            for (Game d : (gson.fromJson(g, Game[].class))) {
-                games.add(d);
+            for (Game a : gson.fromJson(g, Game[].class)) {
+                games.add(a);
             }
+            Log.d("query?", "made it past parsing " +games.size());
 
 
             activity.runOnUiThread(new Runnable() {
@@ -89,8 +89,6 @@ public abstract class Search {
 
 
         } else {
-            Log.d("query?", "something broke");
-            //handle failed search
         }
 
     }
