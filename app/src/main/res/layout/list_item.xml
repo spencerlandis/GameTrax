@@ -35,16 +35,19 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/checkBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true" />
 
                 <Button
+                    android:id="@+id/addGame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add Game" />
 
                 <Button
+                    android:id="@+id/link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="More Info" />

@@ -1,8 +1,28 @@
 package Data;
 
+import android.view.View;
+
 /**
  * Created by spencerlandis on 3/8/14.
  */
 public class User {
-    //make everything static? only one user then we'll have the user everywehre!
+
+    public boolean hasGame(int id)
+    {
+        return false;
+    }
+
+    public void addGame(View v)
+    {
+    }
+
+    public void removeGame(View v)
+    {
+
+    }
+
+    public static User loadUser()
+    {
+        return new User();
+    }
 }
