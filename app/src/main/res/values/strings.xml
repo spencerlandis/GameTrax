@@ -4,5 +4,5 @@
     <string name="app_name">GameTrax</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    <color name="charcoal">#ff222222</color>
 </resources>

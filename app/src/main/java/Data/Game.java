@@ -13,14 +13,16 @@ import java.net.URL;
 /**
  * Created by spencerlandis on 3/8/14.
  */
-public class Game {
+public class Game
+{
     private int id;
     private String name;
     private String deck;
     private String site_detail_url;
     private Image image;
 
-    public Game(int id, String name, String deck, String site_detail_url, Image image) {
+    public Game(int id, String name, String deck, String site_detail_url, Image image)
+    {
         this.id = id;
         this.name = name;
         this.deck = deck;
@@ -28,84 +30,112 @@ public class Game {
         this.image = image;
     }
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public String getDeck() {
+    public String getDeck()
+    {
         return deck;
     }
 
-    public void setDeck(String deck) {
+    public void setDeck(String deck)
+    {
         this.deck = deck;
     }
 
-    public String getSite_detail_url() {
+    public String getSite_detail_url()
+    {
         return site_detail_url;
     }
 
-    public void setSite_detail_url(String site_detail_url) {
+    public void setSite_detail_url(String site_detail_url)
+    {
         this.site_detail_url = site_detail_url;
     }
 
-    public Image getImage() {
+    public Image getImage()
+    {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(Image image)
+    {
         this.image = image;
     }
 
     public void loadImage(final ImageView img, final Activity activity) throws IOException
     {
+        //makes sure image isn't null
         if(this.getImage() == null)
         {
             return;
         }
-        new Thread(new Runnable() {
-            public void run() {
+        //starts thread to load image
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
 
                 final Bitmap x;
 
                 HttpURLConnection connection = null;
-                try {
+                try
+                {
                     connection = (HttpURLConnection) new URL(image.getIcon_url()).openConnection();
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                    //image doeson't exist!;
                 }
-                try {
+                try
+                {
                     connection.connect();
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
 
                 }
                 InputStream input = null;
-                try {
+                try
+                {
                     input = connection.getInputStream();x = BitmapFactory.decodeStream(input);
 
-                    activity.runOnUiThread(new Runnable() {
+                    activity.runOnUiThread(new Runnable()
+                    {
                         @Override
-                        public void run() {
+                        public void run()
+                        {
                             img.setImageBitmap(x);
                         }
                     });
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
+                    //todo: handle this exception!!!
                 }
                 connection.disconnect();
-                try {
+                try
+                {
                     input.close();
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     //
                 }
 
