@@ -15,13 +15,13 @@ import java.net.URL;
  */
 public class Game
 {
-    private int id;
+    private long id;
     private String name;
     private String deck;
     private String site_detail_url;
     private Image image;
 
-    public Game(int id, String name, String deck, String site_detail_url, Image image)
+    public Game(long id, String name, String deck, String site_detail_url, Image image)
     {
         this.id = id;
         this.name = name;
@@ -30,12 +30,12 @@ public class Game
         this.image = image;
     }
 
-    public int getId()
+    public long getId()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId(long id)
     {
         this.id = id;
     }

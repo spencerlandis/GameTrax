@@ -2,6 +2,7 @@ package unl.edu.cse.app;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +31,9 @@ public class HomeActivity extends Activity {
 
     private void loadUser()
     {
-        user = User.loadUser();
+
+        SharedPreferences mprefs = getPreferences(MODE_PRIVATE);
+        user = User.loadUser(mprefs);
     }
 
 
@@ -65,4 +68,5 @@ public class HomeActivity extends Activity {
     {
         HomeActivity.user = user;
     }
+
 }

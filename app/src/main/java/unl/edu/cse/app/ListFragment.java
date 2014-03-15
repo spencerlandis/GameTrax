@@ -27,6 +27,6 @@ public class ListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Search.setView(getView());
         Search.initiateSearch();
-
+        HomeActivity.getUser().loadGames();
     }
 }

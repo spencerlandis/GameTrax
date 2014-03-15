@@ -85,14 +85,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         });
 
         //set id so add will work
-        convertView.setId(game.getId());
         ((CheckBox) convertView.findViewById(R.id.checkBox)).setClickable(false);
 
         btn = (Button) convertView.findViewById(R.id.addGame);
 
-        if(HomeActivity.getUser().hasGame(game.getId()))
+        if(!HomeActivity.getUser().hasGame(game.getId()))
         {
-            ((CheckBox) convertView.findViewById(R.id.checkBox)).setChecked(true);
+            ((CheckBox) convertView.findViewById(R.id.checkBox)).setChecked(false);
+            btn.setText("Add Game");
             btn.setOnClickListener(new View.OnClickListener()
             {
                 public void onClick(View v)
@@ -104,7 +104,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
         else
         {
-            ((CheckBox) convertView.findViewById(R.id.checkBox)).setChecked(false);
+            ((CheckBox) convertView.findViewById(R.id.checkBox)).setChecked(true);
+            btn.setText("Remove");
             btn.setOnClickListener(new View.OnClickListener()
             {
                 public void onClick(View v)

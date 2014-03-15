@@ -23,9 +23,6 @@ import Data.Game;
 
 public final class Search {
 
-    private static ExpandableListAdapter collectionListAdapter;
-    private static ExpandableListView collection;
-    private static List<Game> collectionGames;
     private static ExpandableListAdapter searchListAdapter;
     private static ExpandableListView search;
     private static List<Game> searchGames;
@@ -84,10 +81,10 @@ public final class Search {
             //convert list to games and add to list
             JsonElement g = response.get("results");
             Gson gson = new Gson();
-            collectionGames = new ArrayList<Game>();
+            searchGames = new ArrayList<Game>();
             for (Game a : gson.fromJson(g, Game[].class))
             {
-                collectionGames.add(a);
+                searchGames.add(a);
             }
 
             //update visiuals
@@ -100,14 +97,14 @@ public final class Search {
                     search = (ExpandableListView) view.findViewById(R.id.searchList);
 
                     // preparing list data
-                    if(collectionGames.size() == 0)
+                    if(searchGames.size() == 0)
                     {
                         ((TextView)view.findViewById(android.R.id.empty)).setText("Search Returned Nothing!");
                     }
-                    collectionListAdapter = new ExpandableListAdapter(activity, collectionGames, activity);
+                    searchListAdapter = new ExpandableListAdapter(activity, searchGames, activity);
 
-                    search.setAdapter(collectionListAdapter);
-                    collectionListAdapter.notifyDataSetChanged();
+                    search.setAdapter(searchListAdapter);
+                    searchListAdapter.notifyDataSetChanged();
                 }
             });
 
@@ -149,5 +146,15 @@ public final class Search {
                 Search.view.findViewById(R.id.searchWindow).setVisibility(View.INVISIBLE);
             }
         });
+    }
+
+    public static Game getGame(String description)
+    {
+        for(Game g : searchGames)
+        {
+            if(g.getDeck().compareTo(description) == 0)
+                return g;
+        }
+        return null;
     }
 }
