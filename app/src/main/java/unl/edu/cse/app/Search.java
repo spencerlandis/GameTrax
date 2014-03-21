@@ -23,6 +23,8 @@ import Data.Game;
 
 public final class Search {
 
+    //Comment here for version control.
+
     private static ExpandableListAdapter searchListAdapter;
     private static ExpandableListView search;
     private static List<Game> searchGames;
