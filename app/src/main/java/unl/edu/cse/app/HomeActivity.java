@@ -2,10 +2,15 @@ package unl.edu.cse.app;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import Data.User;
 
@@ -26,7 +31,17 @@ public class HomeActivity extends Activity {
         }
         setContentView(R.layout.activity_home);
         Search.setActivity(this);
-        loadUser();
+
+        if(isNetworkAvailable())
+        {
+            Log.d("Network", "Available");
+            loadUser();
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "No internet available. Please connect to the internet then retry Game Trax.", Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 
     private void loadUser()
@@ -69,4 +84,10 @@ public class HomeActivity extends Activity {
         HomeActivity.user = user;
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 }

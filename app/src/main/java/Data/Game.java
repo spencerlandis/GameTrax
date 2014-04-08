@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -80,7 +81,7 @@ public class Game
         this.image = image;
     }
 
-    public void loadImage(final ImageView img, final Activity activity) throws IOException
+    public void loadImage(final ImageView img, final Activity activity)
     {
         //makes sure image isn't null
         if(this.getImage() == null)
@@ -100,15 +101,20 @@ public class Game
                 {
                     connection = (HttpURLConnection) new URL(image.getIcon_url()).openConnection();
                 }
-                catch (Exception e)
+                catch (MalformedURLException e)
                 {
                    //image doeson't exist!;
+                }
+                catch (IOException e)
+                {
+
+                    //handle?
                 }
                 try
                 {
                     connection.connect();
                 }
-                catch (Exception e) {
+                catch (IOException e) {
 
                 }
                 InputStream input = null;
@@ -125,7 +131,7 @@ public class Game
                         }
                     });
                 }
-                catch (Exception e)
+                catch (IOException e)
                 {
                     //todo: handle this exception!!!
                 }
@@ -134,7 +140,7 @@ public class Game
                 {
                     input.close();
                 }
-                catch (Exception e)
+                catch (IOException e)
                 {
                     //
                 }

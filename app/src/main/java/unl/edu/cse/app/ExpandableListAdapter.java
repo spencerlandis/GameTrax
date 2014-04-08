@@ -14,7 +14,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.List;
 
 import Data.Game;
@@ -65,13 +64,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         //load image
         ImageView img = (ImageView) convertView.findViewById(R.id.gameImage);
 
-        try
-        {
-            game.loadImage(img, this.activity);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        game.loadImage(img, this.activity);
 
         Button btn = (Button) convertView.findViewById(R.id.link);
         btn.setOnClickListener(new View.OnClickListener()
@@ -163,13 +156,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         //trying to set image from url
         ImageView img = (ImageView) convertView.findViewById(R.id.smallImage);
 
-        try
-        {
-            game.loadImage(img, this.activity);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        game.loadImage(img, this.activity);
 
         return convertView;
     }
