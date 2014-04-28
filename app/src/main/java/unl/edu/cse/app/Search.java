@@ -52,6 +52,7 @@ public final class Search {
             {
                 String query = "http://www.giantbomb.com/api/search/?api_key=7f4feae8d9cc9bc262d824cf64ce654fc4ed3b92&query=\"" + String.valueOf(((TextView) view.findViewById(R.id.editText)).getText()) + "\"&format=json&resources=game&limit=20&field_list=name,deck,site_detail_url,id,image";
                 query = query.replaceAll(" ", "%20");
+                Log.d("query?", query);
                 try
                 {
                     URL url = new URL(query);

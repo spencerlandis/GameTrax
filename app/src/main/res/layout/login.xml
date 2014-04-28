@@ -4,12 +4,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dip"
-    android:layout_below="@id/header">
+    android:padding="10dip">
     <!--  Email -->
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="#372c24"
+        android:textColor="#FFFFFF"
         android:text="Email"/>
     <EditText android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -19,7 +18,7 @@
     <!--  Password -->
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="#372c24"
+        android:textColor="#FFFFFF"
         android:text="Password"/>
     <EditText android:layout_width="fill_parent"
         android:layout_height="wrap_content"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -19,12 +20,14 @@ public class ListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.fragment_list_view, container, false);
+        TextView tv = (TextView)v.findViewById(R.id.editText);
         return v;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
+
         super.onActivityCreated(savedInstanceState);
         Search.setView(getView());
         Search.initiateSearch();

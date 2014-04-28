@@ -3,7 +3,6 @@ package unl.edu.cse.app;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -26,7 +25,7 @@ public class HomeActivity extends Activity {
         if (savedInstanceState == null)
         {
             FragmentManager ft = getFragmentManager();
-            ft.beginTransaction().add(R.id.container, new ListFragment()).commit();
+            ft.beginTransaction().add(R.id.container, new LoginFragment()).commit();
 
         }
         setContentView(R.layout.activity_home);
@@ -35,7 +34,6 @@ public class HomeActivity extends Activity {
         if(isNetworkAvailable())
         {
             Log.d("Network", "Available");
-            loadUser();
         }
         else
         {
@@ -43,14 +41,6 @@ public class HomeActivity extends Activity {
             finish();
         }
     }
-
-    private void loadUser()
-    {
-
-        SharedPreferences mprefs = getPreferences(MODE_PRIVATE);
-        user = User.loadUser(mprefs);
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
