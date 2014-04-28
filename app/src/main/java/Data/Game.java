@@ -3,12 +3,11 @@ package Data;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.widget.ImageView;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -16,7 +15,7 @@ import java.net.URL;
  */
 public class Game
 {
-    private long id;
+    private long game_id;
     private String name;
     private String deck;
     private String site_detail_url;
@@ -24,7 +23,7 @@ public class Game
 
     public Game(long id, String name, String deck, String site_detail_url, Image image)
     {
-        this.id = id;
+        this.game_id = id;
         this.name = name;
         this.deck = deck;
         this.site_detail_url = site_detail_url;
@@ -33,12 +32,12 @@ public class Game
 
     public long getId()
     {
-        return id;
+        return game_id;
     }
 
     public void setId(long id)
     {
-        this.id = id;
+        this.game_id = id;
     }
 
     public String getName()
@@ -83,6 +82,7 @@ public class Game
 
     public void loadImage(final ImageView img, final Activity activity)
     {
+        Log.d("loading image", "made it here?");
         //makes sure image isn't null
         if(this.getImage() == null)
         {
@@ -99,22 +99,20 @@ public class Game
                 HttpURLConnection connection = null;
                 try
                 {
-                    connection = (HttpURLConnection) new URL(image.getIcon_url()).openConnection();
+                    connection = (HttpURLConnection) new URL(image.getIconUrl().replace("\\", "")).openConnection();
+                    Log.d("Game", connection.toString());
                 }
-                catch (MalformedURLException e)
-                {
-                   //image doeson't exist!;
-                }
-                catch (IOException e)
+                catch (Exception e)
                 {
 
-                    //handle?
+                    Log.d("Game", "5");
                 }
                 try
                 {
                     connection.connect();
                 }
-                catch (IOException e) {
+                catch (Exception e) {
+                    Log.d("Game", e.toString());
 
                 }
                 InputStream input = null;
@@ -131,18 +129,19 @@ public class Game
                         }
                     });
                 }
-                catch (IOException e)
+                catch (Exception e)
                 {
-                    //todo: handle this exception!!!
+                    Log.d("Game", "1");
                 }
                 connection.disconnect();
                 try
                 {
                     input.close();
                 }
-                catch (IOException e)
+                catch (Exception e)
                 {
-                    //
+
+                    Log.d("Game", "2");
                 }
 
             }

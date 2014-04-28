@@ -8,9 +8,9 @@
     <!-- Full Name Field -->
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="#372c24"
-        android:text="Full Name"/>
-    <EditText android:id="@+id/reg_fullname"
+        android:textColor="#FFFFFF"
+        android:text="Email"/>
+    <EditText android:id="@+id/reg_email"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
@@ -19,20 +19,21 @@
     <!--  Email Field-->
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="#372c24"
-        android:text="Email"/>
-    <EditText android:id="@+id/reg_email"
+        android:textColor="#FFFFFF"
+        android:text="Password"/>
+    <EditText android:id="@+id/reg_password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
         android:singleLine="true"
+        android:password="true"
         android:layout_marginBottom="20dip"/>
     <!-- Password Field -->
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="#372c24"
+        android:textColor="#FFFFFF"
         android:text="Password"/>
-    <EditText android:id="@+id/reg_password"
+    <EditText android:id="@+id/confirm_password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:password="true"

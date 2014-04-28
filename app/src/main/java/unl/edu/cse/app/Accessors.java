@@ -1,5 +1,7 @@
 package unl.edu.cse.app;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 
@@ -23,12 +25,7 @@ import Data.User;
 public final class Accessors {
     public static User createAccount(String email, String password)
     {
-        return login(email, password);
-    }
-
-    public static User login(String email, String password)
-    {
-        String url = "http://csce.unl.edu:8080/GameTraxService/Login/?";
+        String url = "http://csce.unl.edu:8080/GameTraxService/CreateAccount/?";
         List<BasicNameValuePair> params = new LinkedList<BasicNameValuePair>();
         params.add(new BasicNameValuePair("email", email));
         params.add(new BasicNameValuePair("password", password));
@@ -36,9 +33,9 @@ public final class Accessors {
         String paramString = URLEncodedUtils.format(params, "utf-8");
 
         url += paramString;
-        System.out.println(url);
         URL obj = null;
 
+        Log.d("request", url);
         try{
             obj = new URL(url);
         }
@@ -82,7 +79,69 @@ public final class Accessors {
         JsonParser parser = new JsonParser();
 
 
-        User user = (User) gson.fromJson(parser.parse(response.toString()), User.class);
+        Log.d("response", response.toString().replace("iconUrl", "icon_url"));
+        User user = (User) gson.fromJson(parser.parse(response.toString().replace("iconUrl", "icon_url")), User.class);
+        return user;
+    }
+
+    public static User login(String email, String password)
+    {
+        String url = "http://csce.unl.edu:8080/GameTraxService/Login/?";
+        List<BasicNameValuePair> params = new LinkedList<BasicNameValuePair>();
+        params.add(new BasicNameValuePair("email", email));
+        params.add(new BasicNameValuePair("password", password));
+
+        String paramString = URLEncodedUtils.format(params, "utf-8");
+
+        url += paramString;
+        URL obj = null;
+
+        Log.d("request", url);
+        try{
+            obj = new URL(url);
+        }
+        catch(MalformedURLException e)
+        {
+            System.out.println(e.toString());
+        }
+
+        HttpURLConnection con = null;
+
+        try{
+            con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+        }catch(IOException e)
+        {
+            System.out.println(e.toString());
+        }
+        System.out.println(con.toString());
+        int responseCode = 0;
+        StringBuffer response = null;
+        try{
+            responseCode = con.getResponseCode();
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+        }catch(IOException e)
+        {
+            System.out.println(e.toString());
+        }
+
+
+        //print result
+        Gson gson = new Gson();
+        JsonParser parser = new JsonParser();
+
+
+        Log.d("response", response.toString().replace("iconUrl", "icon_url"));
+        User user = (User) gson.fromJson(parser.parse(response.toString().replace("iconUrl", "icon_url")), User.class);
         return user;
     }
 
@@ -105,7 +164,7 @@ public final class Accessors {
         String paramString = URLEncodedUtils.format(params, "utf-8");
 
         url += paramString;
-        System.out.println(url);
+        Log.d("addgame", url);
         URL obj = null;
 
         try{
@@ -160,7 +219,7 @@ public final class Accessors {
         String paramString = URLEncodedUtils.format(params, "utf-8");
 
         url += paramString;
-        System.out.println(url);
+        Log.d("removeGame", url);
         URL obj = null;
 
         try{

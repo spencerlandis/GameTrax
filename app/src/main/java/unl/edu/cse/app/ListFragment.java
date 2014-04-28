@@ -2,11 +2,10 @@ package unl.edu.cse.app;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by spencerlandis on 3/15/14.
@@ -19,25 +18,20 @@ public class ListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        Log.d("list on create", "failing after this");
         View v = inflater.inflate(R.layout.fragment_list_view, container, false);
-        TextView tv = (TextView)v.findViewById(R.id.editText);
         return v;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
-
+        Log.d("list fragment", "created!");
         super.onActivityCreated(savedInstanceState);
         Search.setView(getView());
         Search.initiateSearch();
-        try {
-            HomeActivity.getUser().loadGames();
-        }
-        catch(NullPointerException e)
-        {
-            Toast.makeText(getActivity(), "No internet available. Please connect to the internet then retry Game Trax.", Toast.LENGTH_LONG).show();
-            getActivity().finish();
-        }
+        Log.d("loading games", "made it to load games");
+        HomeActivity.getUser().loadGames();
+        Log.d("loading games", "made it past load games");
     }
 }

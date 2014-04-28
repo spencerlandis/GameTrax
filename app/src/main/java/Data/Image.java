@@ -12,9 +12,9 @@ public class Image
     private String thumb_url;
     private String tiny_url;
 
-    public Image(String icon_url, String medium_url, String screen_url, String small_url, String thumb_url, String tiny_url)
+    public Image(String iconUrl, String medium_url, String screen_url, String small_url, String thumb_url, String tiny_url)
     {
-        this.icon_url = icon_url;
+        this.icon_url = iconUrl;
         this.medium_url = medium_url;
         this.screen_url = screen_url;
         this.small_url = small_url;
@@ -22,14 +22,14 @@ public class Image
         this.tiny_url = tiny_url;
     }
 
-    public String getIcon_url()
+    public String getIconUrl()
     {
         return icon_url;
     }
 
-    public void setIcon_url(String icon_url)
+    public void setIconUrl(String iconUrl)
     {
-        this.icon_url = icon_url;
+        this.icon_url = iconUrl;
     }
 
     public String getMedium_url()

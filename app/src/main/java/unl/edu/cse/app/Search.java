@@ -62,11 +62,12 @@ public final class Search {
                                     url.openStream()));
 
                     String inputLine = in.readLine();
+                    Log.d("Search", "made it to procss search");
                     processSearch(inputLine);
                 }
                 catch (Exception e)
                 {
-                    Log.d("query?", e.getClass().toString());
+                    Log.d("query?", "failed");
                     //handle?
                 }
             }
@@ -96,18 +97,24 @@ public final class Search {
                 @Override
                 public void run()
                 {
+                    Log.d("made it to search uithread", "working so far");
                     view.findViewById(R.id.searchWindow).setVisibility(View.VISIBLE);
                     search = (ExpandableListView) view.findViewById(R.id.searchList);
-
+                    Log.d("view found in search", "made it farther");
                     // preparing list data
                     if(searchGames.size() == 0)
                     {
                         ((TextView)view.findViewById(android.R.id.empty)).setText("Search Returned Nothing!");
                     }
+                    Log.d("Search", "1");
                     searchListAdapter = new ExpandableListAdapter(activity, searchGames, activity);
 
+                    Log.d("Search", "2");
                     search.setAdapter(searchListAdapter);
+                    Log.d("Search", "3");
                     searchListAdapter.notifyDataSetChanged();
+                    Log.d("Search", "4");
+
                 }
             });
 

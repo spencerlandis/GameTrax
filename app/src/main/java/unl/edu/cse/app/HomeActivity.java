@@ -13,14 +13,16 @@ import android.widget.Toast;
 
 import Data.User;
 
-public class HomeActivity extends Activity {
+public final class HomeActivity extends Activity {
 
     private static User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Search.setActivity(this);
 
         if (savedInstanceState == null)
         {
@@ -29,7 +31,6 @@ public class HomeActivity extends Activity {
 
         }
         setContentView(R.layout.activity_home);
-        Search.setActivity(this);
 
         if(isNetworkAvailable())
         {
